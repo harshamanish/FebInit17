@@ -1,0 +1,19 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "Training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnicutCodeGuru/FebInit17.git"
+  },
+  "author": "happy.anicut@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnicutCodeGuru/FebInit17/issues"
+  },
+  "homepage": "https://github.com/AnicutCodeGuru/FebInit17#readme"
+}
