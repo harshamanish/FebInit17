@@ -1,0 +1,13 @@
+<div class="jumbotron" >
+		<label>
+		   <input type="text" ng-blur="InboxCtrl.updateAppName()"  ng-model="InboxCtrl.modal.appName"   />
+		</label>
+</div>
+<h1> Inbox content</h1>
+<table  class="table table-bordered table-striped" >
+   <tr ng-repeat="main in InboxCtrl.modal.emails"  >
+	   <td >
+			{{main.subject}}
+	   </td>
+   </tr>
+</table>
