@@ -1,0 +1,29 @@
+<div class="row" >
+    <div class="col-md-12" >
+		<h3 class="text-center"  >Todo Application</h3>	
+	</div>
+</div>
+<div class="row" >
+    <div class="col-md-12" >
+		<table class="table table-bordered table-striped"  >
+			<thead>
+			  <tr>
+				<th class="text-center" >SL No.</th>
+				<th class="text-center" >Task Name</th>
+				<th class="text-center" >Status</th>
+			  </tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="task in TodoCtrl.modal.taskList"  >
+					<td>{{$index+1}}</td>
+					<td> {{task.taskName}}</td>
+					<td class="text-center" > 
+							{{task.status}}
+						<button class="btn btn-success"  ng-show="task.status==='Pending'"  >Complete Task</button> 
+						<button class="btn btn-danger"  ng-show="task.status==='Completed'"  >Delete Task</button> 
+				    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

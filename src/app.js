@@ -9,7 +9,6 @@ MyApp.run(function(){
 //Config here
 MyApp.config(function($routeProvider,$locationProvider){
     $locationProvider.hashPrefix('');
-	
 	$routeProvider
 		.when('/inbox', {
 			templateUrl: 'view/inbox.html',
@@ -26,16 +25,21 @@ MyApp.config(function($routeProvider,$locationProvider){
 			controller: 'TrashCtrl',
 			controllerAs: 'TrashCtrl'
 		})
+		.when('/todo', {
+			templateUrl: 'view/todo.html',
+			controller: 'TodoCtrl',
+			controllerAs: 'TodoCtrl'
+		})
 		.otherwise({
 			redirectTo: '/inbox'
 		})
 });
 
-MyApp.controller("InboxCtrl",function(sampleService){
+MyApp.controller("InboxCtrl",function(sampleService,sampleFactory){
     var InboxCtrl = this;
-	debugger;
 	InboxCtrl.modal={
 	   appName:sampleService.appName,
+	   factoryName:sampleFactory.name,
 	   emails:[{
 				 subject:"Inbox Message 1"
 			   },{
@@ -47,13 +51,17 @@ MyApp.controller("InboxCtrl",function(sampleService){
 	
 	InboxCtrl.updateAppName=function(){
 		sampleService.updateName(InboxCtrl.modal.appName)
+	}	
+	InboxCtrl.updateFactoryName=function(){
+		sampleFactory.name = InboxCtrl.modal.factoryName;
 	}
 });
 
-MyApp.controller("SentCtrl",function(sampleService){
+MyApp.controller("SentCtrl",function(sampleService,sampleFactory){
     var SentCtrl = this;
 	SentCtrl.modal={
 	   appName:sampleService.appName,
+	   factoryName:sampleFactory.name,
 	   emails:[{
 				 subject:"Sent Message 1"
 			   },{
@@ -65,6 +73,9 @@ MyApp.controller("SentCtrl",function(sampleService){
 	
 	SentCtrl.updateAppName=function(){
 		sampleService.updateName(SentCtrl.modal.appName)
+	}
+	SentCtrl.updateFactoryName=function(){
+		sampleFactory.name = SentCtrl.modal.factoryName;
 	}
 });
 
@@ -82,12 +93,32 @@ MyApp.controller("TrashCtrl",function(){
 	}
 });
 
+MyApp.controller("TodoCtrl",function(){
+    var TodoCtrl = this;
+	TodoCtrl.modal={
+	   taskList:[
+	      {taskName:"My task 1 ",status:"Completed" },
+	      {taskName:"My task 2 ",status:"Pending"},
+	      {taskName:"My task 3 ",status:"Pending"},
+	      {taskName:"My task 4 ",status:"Pending"},
+	      {taskName:"My task 5 ",status:"Pending"}
+	   ]
+	};
+});
+
 
 MyApp.service("sampleService",function(){
     this.appName="Email Client";
+	
 	this.updateName=function(val){
 		this.appName=val;
 	}
+});
+
+MyApp.factory("sampleFactory",function(){
+   return {
+      name:"Factory"
+   }
 });
 
 
