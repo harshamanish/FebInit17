@@ -5,7 +5,7 @@
 </div>
 <div class="row" >
     <div class="col-md-12" >
-		<table class="table table-bordered table-striped"  >
+		<table class="table table-bordered table-striped"  ng-if="TodoCtrl.modal.taskList.length > 0"  >
 			<thead>
 			  <tr>
 				<th class="text-center" >SL No.</th>
@@ -14,16 +14,27 @@
 			  </tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="task in TodoCtrl.modal.taskList"  >
+				<tr>
+					<td colspan="3" >
+						<input type="text" class="form-control" placeholder="Search Task"  ng-model="TodoCtrl.modal.searchStr" />
+					</td>
+				</tr>
+				<tr ng-repeat="task in TodoCtrl.modal.taskList | filter:TodoCtrl.modal.searchStr"  ng-class="{'success':task.status==='Completed' }"  >
 					<td>{{$index+1}}</td>
 					<td> {{task.taskName}}</td>
 					<td class="text-center" > 
-							{{task.status}}
-						<button class="btn btn-success"  ng-show="task.status==='Pending'"  >Complete Task</button> 
-						<button class="btn btn-danger"  ng-show="task.status==='Completed'"  >Delete Task</button> 
+						<button class="btn btn-success" ng-show="task.status==='Pending'"  ng-click="TodoCtrl.completeTask(task)"  >Complete Task</button> 
+						<button class="btn btn-danger"  ng-show="task.status==='Completed'" ng-click="TodoCtrl.deleteTask($index)"  >Delete Task</button> 
 				    </td>
 				</tr>
 			</tbody>
 		</table>
+	</div>
+</div>
+<div class="row" >
+    <div class="col-md-12 form-group" >
+		<label>Enter task name</label>
+		<input type="text" class="form-control"   placeholder="Enter task name"  ng-model="TodoCtrl.modal.newTask"   />
+		<button class="btn btn-primary"  ng-click="TodoCtrl.addTask()" >Add Task</button>
 	</div>
 </div>

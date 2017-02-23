@@ -96,6 +96,8 @@ MyApp.controller("TrashCtrl",function(){
 MyApp.controller("TodoCtrl",function(){
     var TodoCtrl = this;
 	TodoCtrl.modal={
+	   searchStr:"",
+	   newTask:"",
 	   taskList:[
 	      {taskName:"My task 1 ",status:"Completed" },
 	      {taskName:"My task 2 ",status:"Pending"},
@@ -104,6 +106,19 @@ MyApp.controller("TodoCtrl",function(){
 	      {taskName:"My task 5 ",status:"Pending"}
 	   ]
 	};
+	
+	TodoCtrl.completeTask=function(task){
+	   task.status="Completed";
+	}
+	
+	TodoCtrl.deleteTask=function(index){
+	   TodoCtrl.modal.taskList.splice(index,1);
+	}
+	TodoCtrl.addTask=function(index){
+	   TodoCtrl.modal.taskList.push({taskName:TodoCtrl.modal.newTask,status:"Pending"});
+	   TodoCtrl.modal.newTask="";
+	}
+	
 });
 
 
