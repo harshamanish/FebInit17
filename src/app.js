@@ -137,6 +137,50 @@ MyApp.factory("sampleFactory",function(){
 });
 
 
+//Directive Simple
+MyApp.directive("date",function($filter){
+   return {
+	  template:$filter('date')(new Date(), "dd-MMM-yyyy-h:mm:ss a")
+   }
+});
+
+
+
+MyApp.directive("date1",function($filter){
+   return {
+      scope:{
+	   type:'@type'
+	  },
+      controller:function($scope){
+	   $scope.time=$filter('date')(new Date(), "dd-MMM-yyyy-h:mm:ss a");
+		setInterval(function(){
+			$scope.time = $filter('date')(new Date(), "dd-MMM-yyyy-h:mm:ss a");
+			$scope.$apply();
+		},1000)
+		
+	  },
+      templateUrl: "view/date1.html" 
+   }
+});
+
+
+//Directive only attribute
+MyApp.directive("date2",function($filter){
+   return {
+      restrict:'A',
+	  template:$filter('date')(new Date(), "dd-MMM-yyyy-h:mm:ss a")
+   }
+});
+
+//Directive only element
+MyApp.directive("date3",function($filter){
+   return {
+      restrict:'E',
+	  template:$filter('date')(new Date(), "dd-MMM-yyyy-h:mm:ss a")
+   }
+});
+
+
 
 
 
