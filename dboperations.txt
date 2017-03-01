@@ -1,0 +1,6 @@
+
+db.todo.insert({taskName:"My task 1 ",status:"Completed" });
+
+db.todo.find();
+
+
